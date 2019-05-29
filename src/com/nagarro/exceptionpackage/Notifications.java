@@ -1,4 +1,4 @@
-package exceptionpackage;
+package com.nagarro.exceptionpackage;
 
 public class Notifications {
 	

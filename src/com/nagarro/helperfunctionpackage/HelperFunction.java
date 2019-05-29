@@ -1,4 +1,4 @@
-package helperfunctionpackage;
+package com.nagarro.helperfunctionpackage;
 
 public class HelperFunction {
 

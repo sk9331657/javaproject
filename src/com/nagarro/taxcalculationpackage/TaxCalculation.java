@@ -1,8 +1,8 @@
-package taxcalculationpackage;
-import collectionpackage.Datacollection;
-import exceptionpackage.Notifications;
-import validatorspackage.Validators;
-import helperfunctionpackage.HelperFunction;
+package com.nagarro.taxcalculationpackage;
+import com.nagarro.collectionpackage.*;
+import com.nagarro.exceptionpackage.*;
+import com.nagarro.validatorspackage.*;
+import com.nagarro.helperfunctionpackage.*;
 import java.util.*;
 
 public class TaxCalculation {
@@ -10,7 +10,7 @@ public class TaxCalculation {
 	public static void main(String[] args){
 		
 			Scanner input = new Scanner(System.in);
-			
+			System.out.println("Welcome to Tax Utility");
 			while(true) {
 				System.out.println("Enter Product Name");
 				String name = input.nextLine();
@@ -44,8 +44,9 @@ public class TaxCalculation {
 				hmap.put("Quantity",quantity);
 				hmap.put("Tax", Double.toString(HelperFunction.CalculateTax(type,Price)));
 				hmap.put("Total", Double.toString(Integer.parseInt(Price)+Double.parseDouble(hmap.get("Tax"))));
-				Datacollection.setData(hmap);
-				Datacollection.getData();
+				Datacollection data = new Datacollection();
+				data.setData(hmap);
+				data.getData();
 				System.out.println("Enter any key to continue or n to exit");
 				String choice= input.nextLine();
 				if(choice.trim().equals("n")) {

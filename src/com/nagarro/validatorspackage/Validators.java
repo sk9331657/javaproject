@@ -1,4 +1,4 @@
-package validatorspackage;
+package com.nagarro.validatorspackage;
 
 public class Validators {
 

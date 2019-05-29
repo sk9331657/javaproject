@@ -1,4 +1,4 @@
-package constantspackage;
+package com.nagarro.constantspackage;
 
 public class TaxCalculationConstant {
 	
