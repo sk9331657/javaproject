@@ -6,9 +6,7 @@ public class Raw implements Calculate  {
 
 	@Override
 	public Double calculateTax(Double price) {
-		Double tax;
-		tax = TaxConstants.TAX_VALUE * price;
-		return tax;
+		return TaxConstants.TAX_VALUE * price;
 	}
 	
 

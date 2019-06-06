@@ -3,7 +3,8 @@ import com.nagarro.collection.DataStorage;
 import com.nagarro.helpers.*;
 import java.util.*;
 import com.nagarro.dto.*;
-
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 /**
 * The class helps Calculate Tax on Products 
 * And output them
@@ -13,10 +14,13 @@ import com.nagarro.dto.*;
 
 public class TaxCalculation {
 
+
 	public static void main(String[] args){
+		    Logger logger = Logger.getLogger(TaxCalculation.class);
+		    BasicConfigurator.configure();
 			Scanner input = new Scanner(System.in);
 			DataStorage ds = new DataStorage();
-			System.out.println("Welcome to Tax Utility");
+			logger.info("Welcome to Tax Utility");
 			try {
 				while(true) {
 					Helpers helper = new Helpers();
@@ -25,18 +29,18 @@ public class TaxCalculation {
 					Integer quantity = helper.getQuantity();
 					Double price = helper.getPrice();
 					Item item = helper.processData(name, type, quantity, price);
-					ds.setData(item.getName(),item.getType(),item.getprice(),item.getquantity(), item.getTax(),item.getTax()+item.getprice());
+					ds.setData(item);
 					ds.getData();
-					System.out.println("Enter any key to continue or n to exit");
+					logger.info("Enter any key to continue or n to exit");
 					String choice = input.nextLine();
 					if(choice.trim().equals("n")) {
-						System.out.println("Bye!!! ");
+						logger.info("Bye!!! ");
 						input.close();
 						break;
 					}		
 				}	
 			} catch(Exception e) {
-				System.out.println(e.getStackTrace());	
+				logger.info(e.getStackTrace());	
 			}
 			
 			

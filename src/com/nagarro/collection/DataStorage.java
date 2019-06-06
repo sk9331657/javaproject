@@ -1,45 +1,43 @@
 package com.nagarro.collection;
-import java.util.*; 
+import java.util.*;
+
+import org.apache.log4j.Logger;
+
 import com.nagarro.dto.*;
+import com.nagarro.taxcalculation.TaxCalculation;
 
 public class DataStorage {
+     Logger logger = Logger.getLogger(TaxCalculation.class);
+	 ArrayList<Item> finallist = new ArrayList<>();
 
-	 ArrayList<HashMap<String,String>> finallist = new ArrayList<>();
-
-	public  void setData(String name,ItemType type,Double price,Integer quantity,Double tax, Double total ) {
+	public  void setData(Item item ) {
 
 		Boolean found = false;
-		for (int i=0;i<finallist.size();i++)
+		for ( Item i : finallist )
 	    {
-			
-	        if(finallist.get(i).get("Name").equals(name)&&(ItemType.valueOf(finallist.get(i).get("Type")).equals(type))&&
-	        		(Double.parseDouble(finallist.get(i).get("Price"))==price)) {
-	        	HashMap<String,String> tmap = new HashMap<>();
-	        	tmap = finallist.get(i);
-	        	tmap.put("Quantity", String.valueOf(Integer.parseInt(finallist.get(i).get("Quantity"))+quantity));
-	        finallist.set(i,tmap);
+	        if(i.getName().equals(item.getName())&&(i.getType().equals(item.getType()))&&
+	        		(i.getType()==item.getType())) {
+	        i.setQuantity(i.getquantity()+item.getquantity());
 	        found= true;
 	        break;
 	        }
 	    }
 		if(!found)
 		{
-			HashMap<String,String> Hmap = new HashMap<String , String>();
-			Hmap.put("Name",name);
-			Hmap.put("Type",type.toString());
-			Hmap.put("Price",price.toString());
-			Hmap.put("Quantity",quantity.toString());
-			Hmap.put("Tax",tax.toString());
-			Hmap.put("Total",total.toString());
-			finallist.add(Hmap);
-			
+			finallist.add(item);
 		}
 
 	}
 	public  void getData() {
-		ListIterator<HashMap<String,String>>  iterator = finallist.listIterator(); 
+		ListIterator<Item>  iterator = finallist.listIterator(); 
 		while (iterator.hasNext()) { 
-            System.out.println("Object is : "+ iterator.next()); 
+			Item temp = iterator.next();
+			logger.info("Items");
+            logger.info("Name:       "+temp.getName());  
+            logger.info("Price:      "+ temp.getprice() ); 
+            logger.info("Quantity:   "+ temp.getquantity() ); 
+            logger.info("Tax:        "+ temp.getTax() ); 
+            logger.info("Total:      " + (temp.getprice()+temp.getTax()));
         } 
 	}
 

@@ -35,6 +35,10 @@ public class Item {
 		this.tax = tax;
 	}
 
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	
 }
 

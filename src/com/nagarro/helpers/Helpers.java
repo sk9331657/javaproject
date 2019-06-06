@@ -1,18 +1,21 @@
 package com.nagarro.helpers;
-import com.nagarro.constants.*;
 import com.nagarro.dto.*;
 import com.nagarro.notifications.*;
 import com.nagarro.validators.*;
 import java.util.*;
+import org.apache.log4j.Logger;
 
 public class Helpers {
+	private final Logger logger = Logger.getLogger(Helpers.class);
+    
 	Scanner input = new Scanner(System.in);
 	Notifications notify = new Notifications();
 	Validators validate = new Validators();
 
 	
 	public  String getName() {
-		System.out.println("Enter Product Name");
+		
+		logger.info("Enter Product Name");
 		String name = input.nextLine(); // Stores Name of Product
 		while(!(validate.validateName(name))) {
 			notify.invalidName();
@@ -22,7 +25,7 @@ public class Helpers {
 	}
 	
 	public  String getType() {
-		System.out.println("Enter 1 for Raw , 2 for Manufactured, 3 for Imported Type of Product");
+		logger.info("Enter 1 for Raw , 2 for Manufactured, 3 for Imported Type of Product");
 		String type = input.nextLine(); // Stored Type of Product
 		while(!(validate.validateType(type))) {
 			notify.invalidType();
@@ -38,7 +41,7 @@ public class Helpers {
 	}
 	
 	public  Integer getQuantity() {
-		System.out.println("Enter quantity");
+		logger.info("Enter quantity");
 		String quantity = input.nextLine();
 		while(!(validate.validateInteger(quantity))) {
 			notify.invalidQuantity();
@@ -47,7 +50,7 @@ public class Helpers {
 		return Integer.parseInt(quantity);
 	}
 	public  Double getPrice() {
-		System.out.println("Enter Price");
+		logger.info("Enter Price");
 		String price = input.nextLine();
 		while(!(validate.validateDouble(price))) {
 			notify.invalidPrice();
